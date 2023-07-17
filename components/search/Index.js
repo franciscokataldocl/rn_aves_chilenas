@@ -15,7 +15,6 @@ const Search = () => {
         //Keyboard.dismiss()
     } else{
         dispatch(resetBirds());
-        //settings
     }
     
   }, [search]);
