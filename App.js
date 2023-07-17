@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+import { store } from './store/store';
+import { Provider } from 'react-redux';
+// import ContainerCards from './components/cards/ContainerCards';
+import { NativeBaseProvider } from 'native-base';
+import { CustomTheme } from './src/theme';
+
+import Navigation from './router/navigation/Navigation';
+import { LogBox } from "react-native"
 
 export default function App() {
+  LogBox.ignoreLogs([
+    'In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.',
+    ])
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NativeBaseProvider theme={CustomTheme} >
+      <Navigation/>
+      </NativeBaseProvider>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
